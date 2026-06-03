@@ -1,6 +1,5 @@
 def calculate_love_score(name1, name2, word1, word2):
     names_combinated = (name1 + name2).lower()
-    words_combinates = (word1 + word2)
 
     score_true = 0
     score_love = 0
