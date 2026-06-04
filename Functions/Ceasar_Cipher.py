@@ -1,21 +1,50 @@
-ABC_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+ABC_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
+def caesar_Cipher(original_text, shift_amount, encode_or_decode):
+    text_save = ""
+    
+    if encode_or_decode == "decode":
+        shift_amount *= -1
+        
+    for letter in original_text:
+        if letter not in ABC_list:
+            text_save += letter
+        else:
+            position = ABC_list.index(letter)
+            new_position = position + shift_amount
+            text_save += ABC_list[new_position]
+            
+    print(f"Here is the {encode_or_decode}d result: {text_save}")
 
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+try:
+    selection_encrypt = input("Do you want to enter the encoding menu 'Yes/No'?:\n").lower()
+
+    if selection_encrypt == "Yes":
+         should_continue = True
+    
+    elif selection_encrypt == "No": 
+         should_continue = False
+         print("Goobye")
+         
+    
+
+    while should_continue:
+        direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+        text = input("Type your message:\n").lower()
+        shift = int(input("Type the shift number:\n"))
+    
+        shift = shift % 26
+
+    
+        caesar_Cipher(original_text=text, shift_amount=shift, encode_or_decode=direction)
+        
+        restart = input("Type 'yes' if you want to go again. Otherwise type 'no':\n").lower()
+        if restart == "no":
+             should_continue = False
+             print("Goodbye!")
     
     
-def encrypt(text_normal, shif_amount):
-    text_encrypt = ""
-
-    for letter in text_normal:
-        shifted_position = ABC_list.index(letter) + shif_amount
-        text_encrypt = ABC_list[34]
-    
-    print(text_encrypt)
-
-
-encrypt(text_normal=text, shif_amount=shift)
-    
-
+except ValueError: 
+    print("Numbers are not allowed")
+  
