@@ -19,32 +19,46 @@ def caesar_Cipher(original_text, shift_amount, encode_or_decode):
 
 try:
     selection_encrypt = input("Do you want to enter the encoding menu 'Yes/No'?:\n").lower()
-
-    if selection_encrypt == "Yes":
-         should_continue = True
     
-    elif selection_encrypt == "No": 
+
+    if any(char.isdigit() for char in selection_encrypt):
+        raise ValueError("Numbers are not allowed")
+    
+
+    if selection_encrypt == "yes":
+         should_continue = True
+
+
+         while should_continue:
+             direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+
+             if any(char.isdigit() for char in direction):
+                 raise ValueError("Numbers are not allowed")
+             
+             text = input("Type your message:\n").lower()
+             
+             if any(value.isdigit() for value in text):
+                 raise ValueError("Numbers are not allowed")
+             
+
+             shift = int(input("Type the shift number:\n"))
+    
+             shift = shift % 26
+
+    
+             caesar_Cipher(original_text=text, shift_amount=shift, encode_or_decode=direction)
+        
+             restart = input("Type 'yes' if you want to go again. Otherwise type 'no':\n").lower()
+             if restart == "no":
+                 should_continue = False
+                 print("Goodbye!")
+    
+    
+    else: 
          should_continue = False
          print("Goobye")
-         
-    
-
-    while should_continue:
-        direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
-        text = input("Type your message:\n").lower()
-        shift = int(input("Type the shift number:\n"))
-    
-        shift = shift % 26
-
-    
-        caesar_Cipher(original_text=text, shift_amount=shift, encode_or_decode=direction)
-        
-        restart = input("Type 'yes' if you want to go again. Otherwise type 'no':\n").lower()
-        if restart == "no":
-             should_continue = False
-             print("Goodbye!")
     
     
-except ValueError: 
-    print("Numbers are not allowed")
+except ValueError as e: 
+    print(f"\nNumbers are not allowed")
   
