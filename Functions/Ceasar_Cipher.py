@@ -15,7 +15,7 @@ def caesar_Cipher(original_text, shift_amount, encode_or_decode):
             new_position = position + shift_amount
             text_save += ABC_list[new_position]
             
-    print(f"Here is the {encode_or_decode}d result: {text_save}")
+            print(f"Here is the {encode_or_decode}d result: {text_save}")
 
 try:
     selection_encrypt = input("Do you want to enter the encoding menu 'Yes/No'?:\n").lower()
